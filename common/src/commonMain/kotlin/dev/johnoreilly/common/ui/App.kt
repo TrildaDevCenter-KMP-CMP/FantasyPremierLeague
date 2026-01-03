@@ -1,5 +1,6 @@
 package dev.johnoreilly.common.ui
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.DateRange
@@ -16,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSerializable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.entryProvider
@@ -80,8 +82,9 @@ fun App() {
 
         Scaffold(
             bottomBar = { FantasyPremierLeagueBottomNavigation(topLevelRoutes, backStack) }
-        ) { _ ->
+        ) { padding ->
             NavDisplay(
+                modifier = Modifier.padding(bottom = padding.calculateBottomPadding()),
                 backStack = backStack,
                 onBack = { backStack.removeLastOrNull() },
                 sceneStrategy = listDetailStrategy,
